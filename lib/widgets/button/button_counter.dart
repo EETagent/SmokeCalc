@@ -32,7 +32,7 @@ class _SmokeCalcCountButtonState extends State<SmokeCalcCountButton> {
           children: [
             Flexible(
                 child: SmokeCalcButtonSingle(
-                    icon: "-",
+                    icon: '-',
                     onPressed: () {
                       setState(() {
                         _price--;
@@ -52,7 +52,7 @@ class _SmokeCalcCountButtonState extends State<SmokeCalcCountButton> {
             ),
             Flexible(
                 child: SmokeCalcButtonSingle(
-                    icon: "+",
+                    icon: '+',
                     onPressed: () {
                       setState(() {
                         _price++;

@@ -97,8 +97,11 @@ class _SmokeCalcDrawerState extends State<SmokeCalcDrawer> {
                                 fontWeight: FontWeight.w900),
                           ),
                           Text(
-                            //TODO: Roky, let, rok ..
-                            "KORUN ZA CELKOVÝCH ${widget.years} LET KOUŘENÍ",
+                            widget.years == 1
+                                ? 'KORUN ZA CELKOVÝ 1 ROK KOUŘENÍ'
+                                : widget.years <= 4 && widget.years >= 2
+                                    ? 'KORUN ZA CELKOVÉ ${widget.years} ROKY KOUŘENÍ'
+                                    : 'KORUN ZA CELKOVÝCH ${widget.years} LET KOUŘENÍ',
                             style: const TextStyle(
                                 letterSpacing: 2, color: Color(0xff3f4a62)),
                           )
@@ -107,20 +110,17 @@ class _SmokeCalcDrawerState extends State<SmokeCalcDrawer> {
                     ),
                     Expanded(
                       child: ListView(
-                          children: affordItems.map((item) {
-                        if (item.isPriceOver(widget.money)) {
-                          return Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: SmokeCalcDrawerItem(
-                              asset: item.imageName,
-                              price: item.priceToString(),
-                              description: item.description,
-                            ),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      }).toList()),
+                          children: affordItems
+                              .where((item) => item.isPriceOver(widget.money))
+                              .map((e) => Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: SmokeCalcDrawerItem(
+                                      asset: e.imageName,
+                                      price: e.priceToString(),
+                                      description: e.description,
+                                    ),
+                                  ))
+                              .toList()),
                     ),
                   ],
                 ),

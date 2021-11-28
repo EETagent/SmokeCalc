@@ -14,7 +14,7 @@ class SmokeCalcMainButton extends StatelessWidget {
       padding: EdgeInsets.all(MediaQuery.of(context).size.width / 25),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       child: Image.asset(
-        "assets/symbols/calculator.png",
+        'assets/symbols/calculator.png',
         height: MediaQuery.of(context).size.width / 10,
       ),
       onPressed: onPressed,

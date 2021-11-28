@@ -13,7 +13,7 @@ class SmokeCalcPriceText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Kč",
+              'Kč',
               style: TextStyle(fontSize: 20),
             ),
             Text(
@@ -22,7 +22,7 @@ class SmokeCalcPriceText extends StatelessWidget {
             ),
           ],
         ),
-        const Text("za krabičku"),
+        const Text('za krabičku'),
       ],
     );
   }

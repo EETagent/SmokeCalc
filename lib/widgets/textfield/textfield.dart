@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class SmokeCalcTextField extends StatelessWidget {
   final TextEditingController controller;
+  final Function(String) onChanged;
 
-  const SmokeCalcTextField({Key? key, required this.controller})
+  const SmokeCalcTextField(
+      {Key? key, required this.controller, required this.onChanged})
       : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class SmokeCalcTextField extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         scrollPadding: const EdgeInsets.all(0),
         controller: controller,
+        onChanged: onChanged,
         keyboardType: TextInputType.number,
         expands: false,
         style: TextStyle(
@@ -31,13 +34,16 @@ class SmokeCalcTextField extends StatelessWidget {
             color: Colors.black),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(left: 10),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey.withOpacity(0.2),
-              child: Image.asset(
-                "assets/symbols/cigarette.png",
-                height: 15,
+          suffixIcon: GestureDetector(
+            onTap: FocusScope.of(context).unfocus,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: CircleAvatar(
+                backgroundColor: Colors.grey.withOpacity(0.2),
+                child: Image.asset(
+                  'assets/symbols/cigarette.png',
+                  height: 15,
+                ),
               ),
             ),
           ),

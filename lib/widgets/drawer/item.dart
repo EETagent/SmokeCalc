@@ -48,7 +48,7 @@ class SmokeCalcDrawerItem extends StatelessWidget {
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold),
                             ),
-                            const Text("Kč")
+                            const Text('Kč')
                           ],
                         ),
                         Text(

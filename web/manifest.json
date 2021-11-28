@@ -1,11 +1,11 @@
 {
-    "name": "smokecalc",
+    "name": "SmokeCalc",
     "short_name": "smokecalc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Pro levnější a zdravější život",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

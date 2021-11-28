@@ -22,7 +22,7 @@ class SmokeCalc extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SmokeCalc',
-      theme: ThemeData(fontFamily: "Poppins"),
+      theme: ThemeData(fontFamily: 'Poppins'),
       home: const SmokeCalcHomePage(),
     );
   }
@@ -39,8 +39,8 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
   int money = 0;
   int years = 0;
 
-  String dateSelected = "1984";
-  List<String> yearItems = [""];
+  String dateSelected = '1984';
+  List<String> yearItems = [''];
   List<bool> selectedButtons = [false, false, false];
 
   TextEditingController controller = TextEditingController();
@@ -60,8 +60,8 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const SmokeCalcAppBar(
-        title: "SmokeCalc",
-        subtitle: "Pro levnější a zdravější život",
+        title: 'SmokeCalc',
+        subtitle: 'Pro levnější a zdravější život',
       ),
       backgroundColor: const Color(0xffecf0f3),
       body: Center(
@@ -77,10 +77,10 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
                   const Padding(
                     padding: EdgeInsets.only(top: 15, bottom: 40),
                     child:
-                        SmokeCalcHero(asset: "assets/images/animated/hero.gif"),
+                        SmokeCalcHero(asset: 'assets/images/animated/hero.gif'),
                   ),
                   const Text(
-                    "Počet krabiček za den:",
+                    'Počet krabiček za den:',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
@@ -94,15 +94,15 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
                           Flexible(
                               child: SmokeCalcButton(
                                   id: 0,
-                                  title: "1",
-                                  subtitle: "Krabička",
+                                  title: '1',
+                                  subtitle: 'Krabička',
                                   onPressed: _selectionButtonClicked,
                                   clicked: selectedButtons[0])),
                           Flexible(
                             child: SmokeCalcButton(
                               id: 1,
-                              title: "2",
-                              subtitle: "Krabičky",
+                              title: '2',
+                              subtitle: 'Krabičky',
                               onPressed: _selectionButtonClicked,
                               clicked: selectedButtons[1],
                             ),
@@ -110,8 +110,8 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
                           Flexible(
                             child: SmokeCalcButton(
                               id: 2,
-                              title: "3",
-                              subtitle: "Krabičky",
+                              title: '3',
+                              subtitle: 'Krabičky',
                               onPressed: _selectionButtonClicked,
                               clicked: selectedButtons[2],
                             ),
@@ -126,6 +126,11 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
                             widthFactor: 2 / 3,
                             child: SmokeCalcTextField(
                               controller: controller,
+                              onChanged: (_) {
+                                setState(() {
+                                  _unselectButtons();
+                                });
+                              },
                             )),
                       ],
                     ),
@@ -206,25 +211,29 @@ class _SmokeCalcHomePageState extends State<SmokeCalcHomePage> {
     );
   }
 
+  void _unselectButtons() {
+    // TODO: forEach nebo for element nepřepisuje hodnotu. Proč?
+    for (int i = 0; i < selectedButtons.length; i++) {
+      selectedButtons[i] = false;
+    }
+  }
+
   void _selectionButtonClicked(int i) {
     setState(() {
-      selectedButtons[i] = !selectedButtons[i];
+      final bool buttonState = !selectedButtons[i];
+      _unselectButtons();
+      selectedButtons[i] = buttonState;
       if (selectedButtons[i] == true) {
         controller.text = ((1 + i) * cigarettesPerBox).toString();
       } else {
-        controller.text = "";
-      }
-      for (var p = 0; p < 3; p++) {
-        if (p != i) {
-          selectedButtons[p] = false;
-        }
+        controller.text = '';
       }
     });
   }
 
   void _getWhatYouCouldAfford() {
     //TODO: Zatím to je hodně provizorní výpočet, třeba přidat inflaci
-    if (controller.text != "") {
+    if (controller.text != '') {
       int? cigaretteCount = int.tryParse(controller.text);
 
       if (cigaretteCount != null) {
