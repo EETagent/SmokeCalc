@@ -2,7 +2,7 @@
     package="com.github.EETagent.SmokeCalc">
    <application
         android:label="SmokeCalc"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher">    
         <activity
             android:name=".MainActivity"
             android:exported="true"
